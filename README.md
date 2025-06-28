@@ -1,6 +1,7 @@
 # NSE Stock Analyzer
 
 This project processes raw NSE Bhavcopy data and analyzes delivery-based stock metrics to identify strong buy candidates using capital flow and delivery percentage.
+Also to get updated results, go to NSE website: `https://www.nseindia.com/all-reports`>archives>download `Full Bhavcopy and Security Deliverable Data`> store it in NSE folder.
 
 ## Folder Structure
 
