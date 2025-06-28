@@ -78,3 +78,41 @@ This project processes raw NSE Bhavcopy data and analyzes delivery-based stock m
 - Libraries: `pandas`, `matplotlib`, `seaborn`
 
 These are installed via the setup scripts.
+## Column Selection and Plot Justification
+
+### processNSE.py – Why Specific Columns Were Chosen
+
+The following columns were selected for processing each NSE file due to their relevance in identifying potential stock investments based on delivery and price metrics:
+
+- `SYMBOL`: Identifies the stock uniquely.
+- `DATE1`: Helps track the stock data over time.
+- `AVG_PRICE`: Represents the average traded price, useful for computing actual money flow.
+- `DELIV_QTY`: Shows how much quantity was actually delivered (not intraday), indicating serious investors.
+- `DELIV_PER`: Percentage of total traded quantity that was delivered. A high value often signals accumulation by strong hands.
+- `CLOSE_PRICE`: Reflects the final trading price of the day, giving context to market sentiment.
+- `NO_OF_TRADES`: Provides insight into trading activity.
+- `TTL_TRD_QNTY`: Total quantity traded; used in evaluating demand and delivery against total volume.
+- `TURNOVER_LACS`: Monetary value of trades; used for understanding capital movement.
+- `amount` (derived): A calculated field from `AVG_PRICE * DELIV_QTY`, used to measure the actual rupee value of delivered stock.
+
+Columns like `OPEN_PRICE`, `HIGH_PRICE`, and `LOW_PRICE` were excluded as they don't strongly indicate delivery-based accumulation or investor seriousness.
+
+---
+
+### plotIt.py – Why Two Plots Were Shown
+
+Two main plots were chosen in the visualization phase:
+
+1. **Top 10 Stocks by Avg Delivery %**:
+   - Helps identify stocks with consistently high delivery ratios, which can indicate accumulation or investor confidence.
+
+2. **Top 10 Stocks by Max ₹ Amount Invested**:
+   - Shows which stocks had the most capital flow through delivery, giving an idea of where institutional money might be flowing.
+
+Both metrics (delivery % and amount) are powerful when combined, and thus:
+
+### Quadrant Plot (Smart Summary Visualization)
+
+A third visualization was added as a decision-making quadrant chart to analyze the **top 30 stocks** based on combined delivery % and amount invested. This helps investors visually identify stocks that lie in the high delivery–high amount quadrant, making them prime buy candidates.
+
+Other metrics like `NO_OF_TRADES` or `TURNOVER_LACS` were not directly plotted as they are less reliable independently in making strong buy decisions compared to the delivery-focused metrics.
